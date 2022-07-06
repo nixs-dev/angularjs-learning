@@ -1,5 +1,6 @@
 <div ng-controller="viacep">
     <input ng-model="cep" type="text" placeholder="CEP">
     <button ng-click="get_info()">Procurar</button>
-    {{ response }}
+    
+    <p ng-style="has_error ? {'color': 'red'} : {'color': 'black'}">{{ response }}</p>
 </div>

@@ -2,7 +2,7 @@
     <div id="search-component">
         <input ng-model="city" type="text" placeholder="City" list="search_results_list" ng-change="search_city()">
         <datalist id="search_results_list">
-            <option ng-repeat="i in search_results">{{i.name}}</option>
+            <option ng-repeat="i in search_results">{{ i.name }}</option>
         </datalist>
     </div>
     <button ng-click="get_info()">Procurar</button>

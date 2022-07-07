@@ -1,4 +1,6 @@
 <div ng-controller="login">
+    {{ $storage.user ? $storage.user.name : "Nao" }}
+    
     <input ng-model="email" type="text" placeholder="Email">
     <input ng-model="password" type="password" placeholder="Password">
     <button ng-click="auth()">Ok</button>

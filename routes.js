@@ -1,8 +1,5 @@
 app.config(function ($routeProvider) {
-    $routeProvider.when("/", {
-        templateUrl: "templates/menu.html"
-    })
-    .when("/auth", {
+    $routeProvider.when("/auth", {
         templateUrl: "templates/auth.html"
     })
     .when("/weather", {

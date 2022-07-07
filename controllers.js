@@ -1,10 +1,14 @@
-app.controller("login", function($scope) {
+app.controller("login", function($scope, $localStorage) {
+    delete $localStorage.user;
+    $scope.$storage = $localStorage;
+    
     $scope.auth = function () {
         let correct_email = "a";
         let correct_password = "b";
         
         if($scope.email == correct_email && $scope.password == correct_password) {
             $scope.response = "Success";
+            $localStorage.user = {"name": "X"};
         }
         else {
             $scope.response = "Fail";
@@ -31,7 +35,8 @@ app.controller("viacep", function ($scope, $http) {
     };
 });
 
-app.controller("weather", function ($scope, $http) {
+app.controller("weather", function ($scope, $localStorage, $http) {
+    $scope.$storage = $localStorage;
     let url = "http://api.weatherapi.com/v1";
     let token = "9f10c5cc782e420b89b210825210710";
     $scope.weather = {
@@ -40,6 +45,7 @@ app.controller("weather", function ($scope, $http) {
         temperature_c: ""
     };
     $scope.search_results = [];
+    
     
     $scope.search_city = function () {
         let final_url = url + "/search.json";
@@ -68,6 +74,7 @@ app.controller("weather", function ($scope, $http) {
         
         $http.get(final_url, config).then(function (response) {
             $scope.response = response.data;
+            $localStorage.default_location = city;
             let location_data = response.data.location;
             let weather_data = response.data.current;
             
@@ -76,6 +83,11 @@ app.controller("weather", function ($scope, $http) {
             $scope.weather.icon = weather_data.condition.icon;
         });
     };
+    
+    if($localStorage.default_location) {
+        $scope.city = $localStorage.default_location;
+        $scope.get_info();
+    }
 });
 
 /*
